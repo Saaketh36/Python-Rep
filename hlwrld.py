@@ -1,4 +1,3 @@
-a=1
-b=2
-z= a+b
-print(z)
+fruits = ["apple", "banana", "cherry"]
+fruits.pop()
+print(fruits)   
