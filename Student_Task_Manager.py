@@ -5,7 +5,6 @@ stack = []
 queue = deque()
 tasks = []
 
-# ---------- Linked List ----------
 class Node:
     def __init__(self, data):
         self.data = data
@@ -34,23 +33,22 @@ class LinkedList:
 
 Hist = LinkedList()
 
-# ---------- Functions ----------
 def add_students():
     Student_Id = input("Enter Student ID: ")
-    Student_Name = input("Enter Student NAME: ").strip().upper()   # FIX: string formatting
+    Student_Name = input("Enter Student NAME: ").strip().upper()  
     Student_Age = input("Enter Student Age: ")
 
-    if Student_Id in students:   # IMPROVEMENT: avoid duplicates
+    if Student_Id in students:   
         print("Student already exists")
         return
 
     students[Student_Id] = (Student_Name, Student_Age)
-    stack.append(f"Added Student {Student_Id}")   # FIX: spacing
+    stack.append(f"Added Student {Student_Id}")  
     Hist.add(f"Student Added: {Student_Id}")
     print("Student Added")
 
 def view():
-    if not students:   # IMPROVEMENT: empty check
+    if not students:  
         print("No students found")
         return
 
@@ -61,7 +59,7 @@ def del_student():
     sid = input("Enter Student ID needed to be removed: ")
     if sid in students:
         del students[sid]
-        stack.append(f"Deleted Student {sid}")   # FIX: meaningful action
+        stack.append(f"Deleted Student {sid}")   
         Hist.add(f"Student Deleted: {sid}")
         print("Deleted")
     else:
@@ -70,13 +68,13 @@ def del_student():
 def add_Task():
     task = input("Enter Task: ").strip()
 
-    if not task:   # IMPROVEMENT: avoid empty input
+    if not task:  
         print("Empty task not allowed")
         return
 
     tasks.append(task)
     queue.append(task)
-    stack.append(f"Task Added: {task}")   # FIX: typo "Taskk"
+    stack.append(f"Task Added: {task}")  
     Hist.add(f"Task Added: {task}")
     print("Task Added")
 
@@ -99,17 +97,13 @@ def undo():
     if stack:
         action = stack.pop()
         print(f"Undo: {action}")
-        Hist.add(f"Undo: {action}")   # IMPROVEMENT: consistent message
+        Hist.add(f"Undo: {action}") 
     else:
         print("Nothing to Undo")
 
 def show_history():
     Hist.display()
 
-# ❌ REMOVED: empty function (causes error)
-# def Repeat():
-
-# ---------- Menu ----------
 while True:
     print("\n1. Add Student")
     print("2. View Student")
@@ -142,5 +136,4 @@ while True:
     elif c == '9':
         break
     else:
-        print("Invalid Choice")   # FIX: message1
-        
+        print("Invalid Choice")
