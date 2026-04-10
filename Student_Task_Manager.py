@@ -85,9 +85,6 @@ def undo():
 def show_history():
     Hist.display()
 
-def Repeat():
-
-
 while True:
     print("\n1. Add Student")
     print("2. View Student")
