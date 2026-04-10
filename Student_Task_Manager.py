@@ -1,108 +1,92 @@
 from collections import deque
 
-students = {}
-stack = []
-queue = deque()
-tasks = []
+students={}
+stack=[]
+queue=deque()
+tasks=[]
 
 class Node:
-    def __init__(self, data):
+    def __init__(self,data):
         self.data = data
         self.next = None
 
 class LinkedList:
     def __init__(self):
         self.head = None
-
-    def add(self, data):
-        new = Node(data)
-        if not self.head:
-            self.head = new
-        else:
-            temp = self.head
-            while temp.next:
-                temp = temp.next
-            temp.next = new
-
+    def add(self,data):
+            new=Node(data)
+            if not self.head:
+                self.head=new
+            else:
+                temp=self.head
+                while temp.next:
+                    temp=temp.next
+                temp.next=new
     def display(self):
-        temp = self.head
-        while temp:
-            print(temp.data, end=" -> ")
-            temp = temp.next
-        print("None")
+            temp=self.head
+            while temp:
+                print(temp.data,end="->")
+                temp = temp.next 
+            print("None")
 
 Hist = LinkedList()
 
 def add_students():
     Student_Id = input("Enter Student ID: ")
-    Student_Name = input("Enter Student NAME: ").strip().upper()  
+    Student_Name = input("Enter Student NAME: ")
     Student_Age = input("Enter Student Age: ")
-
-    if Student_Id in students:   
-        print("Student already exists")
-        return
-
-    students[Student_Id] = (Student_Name, Student_Age)
-    stack.append(f"Added Student {Student_Id}")  
-    Hist.add(f"Student Added: {Student_Id}")
+    students[Student_Id] = (Student_Name,Student_Age)
+    stack.append(f"Added Student{Student_Id}")
+    Hist.add(f"StudentID Added: {Student_Id}")
     print("Student Added")
 
 def view():
-    if not students:  
-        print("No students found")
-        return
-
-    for Student_Id, data in students.items():
-        print(Student_Id, ":", data)
+    for Student_Id,data in students.items():
+        print(Student_Id ,":", data)
 
 def del_student():
-    sid = input("Enter Student ID needed to be removed: ")
+    sid=input("Enter Student ID needed to Be removed: " )
     if sid in students:
         del students[sid]
-        stack.append(f"Deleted Student {sid}")   
-        Hist.add(f"Student Deleted: {sid}")
+        stack.append(sid)
+        Hist.add(sid)
         print("Deleted")
     else:
-        print("Not Found")
+        print("None Found")
 
 def add_Task():
-    task = input("Enter Task: ").strip()
-
-    if not task:  
-        print("Empty task not allowed")
-        return
-
+    task=input("Enter Task: ").strip()
     tasks.append(task)
     queue.append(task)
-    stack.append(f"Task Added: {task}")  
-    Hist.add(f"Task Added: {task}")
+    stack.append(f"Taskk Added: {task}")
+    Hist.add(f"Added Task: {task}")
     print("Task Added")
 
 def view_tasks():
-    if not tasks:
-        print("No tasks available")
-    else:
-        print("Tasks:", tasks)
+    print("Tasks: ",tasks)
 
 def process_task():
     if queue:
-        t = queue.popleft()
+        t=queue.popleft()
         stack.append(f"Processed Task: {t}")
         Hist.add(f"Task Processed: {t}")
         print(f"Processed: {t}")
-    else:
-        print("Nothing to Do")
+
+    else:         print("Nothing to Do")
 
 def undo():
     if stack:
         action = stack.pop()
         print(f"Undo: {action}")
-        Hist.add(f"Undo: {action}") 
+        Hist.add(f"Undo performed: {action}")
     else:
         print("Nothing to Undo")
 
 def show_history():
     Hist.display()
+
+def Repeat():
+
 
 while True:
     print("\n1. Add Student")
@@ -110,16 +94,16 @@ while True:
     print("3. Delete Student")
     print("4. Add Task")
     print("5. View Task")
-    print("6. Process task")
-    print("7. Undo")
-    print("8. Show History")
-    print("9. Exit")
+    print('6. Process task')
+    print('7. Undo')
+    print('8. Show History'       )
+    print('9. Exit')
 
     c = input("Enter your Choice: ")
 
-    if c == '1':
+    if c =='1':
         add_students()
-    elif c == '2':
+    elif c== '2':
         view()
     elif c == '3':
         del_student()
@@ -127,13 +111,14 @@ while True:
         add_Task()
     elif c == '5':
         view_tasks()
-    elif c == '6':
+    elif c=='6':
         process_task()
-    elif c == '7':
+    elif c== '7':
         undo()
     elif c == '8':
         show_history()
     elif c == '9':
         break
+
     else:
-        print("Invalid Choice")
+        print("Invalid Code")
