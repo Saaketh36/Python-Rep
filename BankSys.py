@@ -19,5 +19,4 @@ class BankAcc:
 Account = BankAcc("Myself",10000)
 Account.deposit(10000)
 Account.withdraw(21000)
-print(Account)
 print(Account.getBalance())
